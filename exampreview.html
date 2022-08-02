@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Peview</title>
+    <link rel="stylesheet" href='css/bootstrap.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-database.js"></script>
+    <link rel="stylesheet" href='css/bootstrap.css'>
+    <script src='js/bootstrap.js'></script>
+
+</head>
+<style>
+    .container {
+        position: relative;
+        left: 0%;
+        width: 80vw;
+    }
+    
+    #logo {
+        margin-top: -50px;
+        margin-bottom: -45px;
+        padding: 0;
+        height: 120px;
+    }
+    
+    .nav-item a {
+        color: black;
+        text-decoration: none;
+    }
+    
+    .nav-item :hover {
+        color: black;
+        transform: scale(1.1);
+        background-color: lightgrey;
+        border-color: lightgrey;
+    }
+    
+    #showUpModel {
+        color: white;
+        border-radius: 10px;
+        border: none;
+        background: #2c5d7e;
+    }
+    
+    #showUpModel:hover {
+        background-color: lightgrey;
+        transform: scale(1.1);
+        color: black;
+        border-color: lightgrey;
+    }
+    
+    .quetionContainer {
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    
+    .submitButton {
+        position: relative;
+        left: 45%;
+    }
+    
+    .loadingContainer {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .cont {
+        position: relative;
+        left: 200%
+    }
+    
+    #comfirmButton a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    #comfirmButton:hover {
+        background-color: lightgrey;
+        transform: scale(1.1);
+        border-color: lightgrey;
+    }
+    
+    #modalclose-btn:hover {
+        background-color: lightgrey;
+        transform: scale(1.1);
+        border-color: lightgrey;
+        color: black
+    }
+    
+    #comfirmButton a:hover {
+        color: black;
+    }
+    
+    .cont1 {
+        position: relative;
+        left: 0%
+    }
+    
+    #IPText {
+        position: relative;
+        left: 200%;
+    }
+    
+    .modal {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .modal-body {
+        max-height: 800px;
+    }
+    
+    #main-container {
+        margin: 50px;
+    }
+    
+    .center {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .question {
+        background-color: rgb(238, 236, 236);
+        background-size: 100% 100%;
+        overflow-x: hidden;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 3px;
+    }
+    
+    #collapse-quiz {
+        margin-top: 20px;
+        width: 100%;
+    }
+    
+    .myContainer {
+        border: solid 1px lightgrey;
+        border-radius: 6px;
+        margin: 0;
+        padding: 0
+    }
+    
+    .myQuestionContainer {
+        position: relative;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        width: 100%;
+        padding: 10px;
+        min-height: 100px;
+        background: lightgrey;
+        top: 0;
+    }
+    
+    .myAnswersContainer {
+        position: relative;
+        width: 100%;
+        min-height: 100px;
+        background: white;
+        bottom: 0;
+    }
+    
+    .myAnswer {
+        padding: 20px;
+    }
+    
+    .myCheckBar {
+        padding: 20px;
+        background: #698ca3;
+        width: 100%;
+        min-height: 40px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    
+    .checkBoxContainer {
+        padding-left: 30px;
+    }
+    
+    .checked {
+        background: rgb(229, 255, 255)
+    }
+    
+    .panel-body {
+        margin: 0px;
+    }
+    
+    .right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        text-align: right;
+        position: relative;
+        text-align: right;
+        font-size: 10px;
+    }
+</style>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="logo-new.png" id="logo" style="border-radius:4px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav  ms-auto  mb-2 mb-lg-0">
+                    <li id="nav-username" class="nav-item mt-2 me-3 username" style="color:white;">
+                        Hello
+                    </li>
+                    <li class="nav-item">
+                        <button id="logoutButton" type="button" class="btn btn-light"> <a href="index.html">Log out</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <div class="container pt-3">
+        <div class="input-group mb-3 ">
+            <div class="input-group-text">
+                <button id='copyUrlButton' class="btn" type="button">
+                Copy Url</button>
+                <div></div>
+            </div>
+            <input id='shareUrlField' type="text" class="text form-control" value="https://fileshare.io/001-510-115" readonly>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <button id='showUpModel' type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            open static
+          </button>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal  fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background:#868B8E;margin-right:0">
+                    <h5 class="modal-title" id="staticBackdropLabel">exam-1</h5>
+                    <button type="button" class="btn-close btn-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id='examMarkList' style="overflow-y: scroll; height:200px;width:95%">
+
+                        <div class="examInfo">
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="modalclose-btn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id='comfirmButton' type="button" class="btn btn-secondary"><a href='createExamPage.html'>Confirm</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="loadingContainer">
+        <lottie-player id='loading' src="https://assets7.lottiefiles.com/datafiles/bEYvzB8QfV3EM9a/data.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+    </div>
+
+
+    <section class='pt-3'>
+
+        <div id='qeustionsContainer' class="container">
+
+
+        </div>
+
+
+    </section>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src='examPreview.js'></script>
+    <script src='js/bootstrap.js'></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js " integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin=" anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+
+</body>
+
+
+</html>

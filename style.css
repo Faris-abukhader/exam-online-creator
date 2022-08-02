@@ -1,0 +1,125 @@
+body::before {
+  display: block;
+  content: "";
+  height: 50px;
+}
+#logo {
+  margin-top: -50px;
+  margin-bottom: -45px;
+  padding: 0;
+  height: 120px;
+}
+.first-box {
+  width: 100%;
+  background: rgb(249, 248, 253);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.custom-button {
+  background: rgb(254, 206, 60);
+}
+
+.custom-button:hover {
+  background: rgb(63, 18, 169);
+}
+
+.second-box {
+  background: rgb(255, 207, 59);
+}
+
+.team-container {
+  background: rgb(194, 215, 239);
+  border-radius: 10px;
+}
+
+.third-box {
+  background: rgb(63, 117, 187);
+  display: grid;
+}
+
+.custom-img {
+  border: none;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.icons {
+  align-content: center;
+  align-self: center;
+  text-align: center;
+}
+
+@media (max-width: 568px) {
+  .custom-con {
+    display: grid;
+    grid-template-columns: 1fr 1;
+  }
+  .custom-input {
+    align-content: center;
+    align-items: center;
+  }
+}
+
+.fourth-box {
+  background: rgb(249, 248, 253);
+}
+
+.custom-input {
+  width: 40vw;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 1px;
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 4px;
+}
+
+.custom-input:focus {
+  background: lightgray;
+}
+
+.submit-button {
+  width: 40vw;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 1px;
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.submit-button:hover {
+  background: rgb(63, 117, 187);
+}
+
+.custom-button1 {
+  border-radius: 50%;
+  background: rgb(63, 117, 187);
+  margin-left: 10px;
+}
+
+.custom-button1:hover {
+  background: rgb(54, 102, 156);
+}
+
+.custom-footer {
+  padding: 10px;
+  background: rgb(34, 37, 41);
+  color: white;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: white;
+}

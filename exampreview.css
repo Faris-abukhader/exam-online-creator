@@ -1,0 +1,37 @@
+.container {
+  position: relative;
+  left: 0%;
+  width: 80vw;
+}
+
+.quetionContainer {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.submitButton {
+  position: relative;
+  left: 45%;
+}
+
+.loadingContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.cont {
+  position: relative;
+  left: 200%;
+}
+
+.cont1 {
+  position: relative;
+  left: 0%;
+}
+
+#IPText {
+  position: relative;
+  left: 200%;
+}

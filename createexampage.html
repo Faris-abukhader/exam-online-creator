@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Exam</title>
+    <link rel="stylesheet" href='css/bootstrap.css'>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-database.js"></script>
+
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #logoutButton>a {
+            text-decoration: none;
+            color: white;
+        }
+        
+        #logoutButton>a:hover {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 20px;
+            justify-content: center;
+        }
+        
+        .centerButton {
+            position: absolute;
+            left: 40%;
+        }
+        
+        .table {
+            width: 100%;
+        }
+        
+        tr {
+            overflow: hidden;
+        }
+        
+        .bi {
+            color: white
+        }
+        
+        .emptyButton {
+            background: none;
+            border: none;
+            width: 20px;
+            height: 25px;
+        }
+        
+        #logo {
+            margin-top: -50px;
+            margin-bottom: -45px;
+            padding: 0;
+            height: 120px;
+        }
+    </style>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="logo-new.png" id="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav  ms-auto  mb-2 mb-lg-0">
+                    <li id="nav-username" class="nav-item mt-2 me-3 username" style="color:white">
+                        Hello
+                    </li>
+                    <li class="nav-item">
+                        <button id="logoutButton" type="button" class="btn btn-primary"> <a href="index.html">Log out</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="examNameField" placeholder="name@example.com">
+            <label for="floatingInput">Exam name </label>
+        </div>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <div class="container">
+        <button type="button" class="btn btn-secondary centerButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            add new question
+          </button>
+
+    </div>
+
+    <!-- Modal adding new Question -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="questionField" placeholder="name@example.com">
+                        <label for="floatingInput">Question</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="firstAnswerField" placeholder="name@example.com">
+                        <label for="floatingInput">First answer(correct)</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="secondAnswerField" placeholder="name@example.com">
+                        <label for="floatingInput">Second answer</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="thirdAnswerField" placeholder="name@example.com">
+                        <label for="floatingInput">Third answer</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control as" id="fourthAnswerField" placeholder="name@example.com">
+                        <label for="floatingInput">Fourth address</label>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id='comfirmButton' type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal editing new Question -->
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="questionFieldE" placeholder="name@example.com">
+                        <label for="floatingInput">Question</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="firstAnswerFieldE" placeholder="name@example.com">
+                        <label for="floatingInput">First answer(correct)</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="secondAnswerFieldE" placeholder="name@example.com">
+                        <label for="floatingInput">Second answer</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="thirdAnswerFieldE" placeholder="name@example.com">
+                        <label for="floatingInput">Third answer</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control as" id="fourthAnswerFieldE" placeholder="name@example.com">
+                        <label for="floatingInput">Fourth answer</label>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id='comfirmButtonE' type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal showing Question -->
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Review Question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="hara" class="form-floating mb-3">Question : <span id="qu"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">first Answer(correct) : <span id="a1"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">second Answer : <span id="a2"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">third Answer : <span id="a3"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">fourth Answer : <span id="a4"></span>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="co" class="container">
+        <table id='questionsTable' class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col ">Questions</th>
+                    <th style="text-align:right;padding-right:20px;" scope="col me-auto">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <div style="font-size:10px;">add five questions at least to be able to publish your exam</div>
+
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js " integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin=" anonymous "></script>
+    <script src='js/bootstrap.js'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css " rel="stylesheet " integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC " crossorigin="anonymous ">
+    <script src='createExamPage.js'></script>
+
+</body>
+
+</html>
