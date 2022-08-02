@@ -55,12 +55,12 @@ getExamName()
 
 
 var firebaseConfig = {
-    apiKey: "AIzaSyChALbrjjrhF5YInX6RKdumg2iQbT-K7YU",
-    authDomain: "onlineexamcreator.firebaseapp.com",
-    projectId: "onlineexamcreator",
-    storageBucket: "onlineexamcreator.appspot.com",
-    messagingSenderId: "1033187612539",
-    appId: "1:1033187612539:web:6a19fca823779ccffc4fde"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
